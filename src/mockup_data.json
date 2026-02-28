@@ -1,0 +1,1503 @@
+{
+  "summary": {
+    "total_rows": 186184,
+    "total_tickets": 6665,
+    "avg_rows_per_ticket": 27.9,
+    "avg_reassign": 2.48,
+    "mttr_mean_hr": 31.04,
+    "mttr_median_hr": 9.06,
+    "template_res_patterns": 103,
+    "flagged_tickets": 2342,
+    "consistency_pct": 5.0,
+    "data_period": "Oct 1–31, 2025"
+  },
+  "cause_pie": [
+    {
+      "name": "Other",
+      "value": 2813,
+      "pct": 42.8
+    },
+    {
+      "name": "Fiber Optic",
+      "value": 1665,
+      "pct": 25.3
+    },
+    {
+      "name": "Power Outage",
+      "value": 1440,
+      "pct": 21.9
+    },
+    {
+      "name": "Equipment/Router",
+      "value": 547,
+      "pct": 8.3
+    },
+    {
+      "name": "Last Mile",
+      "value": 113,
+      "pct": 1.7
+    },
+    {
+      "name": "Configuration",
+      "value": 2,
+      "pct": 0.0
+    }
+  ],
+  "mttr_by_cause": [
+    {
+      "cause": "Other",
+      "avg_hr": 36.91,
+      "count": 2813
+    },
+    {
+      "cause": "Equipment/Router",
+      "avg_hr": 35.88,
+      "count": 547
+    },
+    {
+      "cause": "Fiber Optic",
+      "avg_hr": 34.7,
+      "count": 1665
+    },
+    {
+      "cause": "Last Mile",
+      "avg_hr": 17.37,
+      "count": 113
+    },
+    {
+      "cause": "Power Outage",
+      "avg_hr": 14.59,
+      "count": 1440
+    }
+  ],
+  "complexity_chart": [
+    {
+      "range": "6-10",
+      "count": 10
+    },
+    {
+      "range": "11-20",
+      "count": 1470
+    },
+    {
+      "range": "21-30",
+      "count": 3312
+    },
+    {
+      "range": "31-50",
+      "count": 1577
+    },
+    {
+      "range": "51+",
+      "count": 296
+    }
+  ],
+  "timeline_tickets": [
+    {
+      "id": "SD25174355",
+      "n_events": 9,
+      "duration_hr": 0.1,
+      "open_time": "2025-10-23 13:19",
+      "close_time": "2025-10-23 13:26",
+      "description": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t0893004903",
+      "resolution": "เปิดงานซ้ำ",
+      "cause": "CU--> 4:Equipment--> SuE:Router",
+      "events": [
+        {
+          "timestamp": "2025-10-23 13:19",
+          "type": "Open",
+          "operator": "Ms.Sutisa Chanchokeat",
+          "team": "2117160601",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        },
+        {
+          "timestamp": "2025-10-23 13:19",
+          "type": "Status Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        },
+        {
+          "timestamp": "2025-10-23 13:23",
+          "type": "Status Change",
+          "operator": "Ms.Anusara Taengtanglan",
+          "team": "9901020002",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        },
+        {
+          "timestamp": "2025-10-23 13:23",
+          "type": "Resolved",
+          "operator": "Ms.Anusara Taengtanglan",
+          "team": "9901020002",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        },
+        {
+          "timestamp": "2025-10-23 13:23",
+          "type": "Status Change",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        },
+        {
+          "timestamp": "2025-10-23 13:26",
+          "type": "Closure",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        },
+        {
+          "timestamp": "2025-10-23 13:26",
+          "type": "Phase Change",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        },
+        {
+          "timestamp": "2025-10-23 13:26",
+          "type": "Closed",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        },
+        {
+          "timestamp": "2025-10-23 13:27",
+          "type": "Phase Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "ใช้บริการ nt2  หมายเลขบริการ  2425J4072  เน็ตใช้งานได้ปกติ  แต่ กล่อง cnema ใช้งานไม่ได้ ติดต่อกลับ คุณสรพงศ์ ใจซื่อ\t089"
+        }
+      ]
+    },
+    {
+      "id": "SD25174749",
+      "n_events": 23,
+      "duration_hr": 21.5,
+      "open_time": "2025-10-24 10:14",
+      "close_time": "2025-10-25 07:44",
+      "description": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link down  IMPORTANT: Please DO NOT change the subject text or MSG reference in this ",
+      "resolution": " สาเหตุ Node AmataCity FTTF2 :: Down ช่วงเวลา 7.38 - 9.41 น. เนื่องจาก ไฟจากการไฟฟ้าขัดข้อง  แก้ไขโดย เจ้าหน้าที่ กฟภ. ทำการแก้ไข",
+      "cause": "NC--> 10:Unexpected improvement from goverment agencies--> NoU:Electricity distribution system maintenance by Eletricity",
+      "events": [
+        {
+          "timestamp": "2025-10-24 10:14",
+          "type": "Open",
+          "operator": "Ms.Onuma Sukwamdee",
+          "team": "2117160602",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 10:15",
+          "type": "Status Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 10:25",
+          "type": "Reassignment",
+          "operator": "Ms.Maliwan Boonkrong",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 10:25",
+          "type": "Status Change",
+          "operator": "Ms.Maliwan Boonkrong",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 10:25",
+          "type": "Operator update",
+          "operator": "Ms.Maliwan Boonkrong",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 10:42",
+          "type": "Operator update",
+          "operator": "MissPraparat Wongsrirattanakul",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 11:39",
+          "type": "Operator update",
+          "operator": "Ms.Onuma Sukwamdee",
+          "team": "2117160602",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 16:51",
+          "type": "Operator update",
+          "operator": "Ms.Chukhwan Uraipong",
+          "team": "2117160602",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 21:00",
+          "type": "Operator update",
+          "operator": "Ms.Chukhwan Uraipong",
+          "team": "2117160602",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 21:13",
+          "type": "Operator update",
+          "operator": "Ms.Chukhwan Uraipong",
+          "team": "2117160602",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 21:22",
+          "type": "Reassignment",
+          "operator": "Mrs.Nipaporn Yuenman",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 21:22",
+          "type": "Status Change",
+          "operator": "Mrs.Nipaporn Yuenman",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 21:22",
+          "type": "Complete",
+          "operator": "Mrs.Nipaporn Yuenman",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 21:31",
+          "type": "Status Change",
+          "operator": "Ms.Chukhwan Uraipong",
+          "team": "2117160602",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-24 21:31",
+          "type": "Finish",
+          "operator": "Ms.Chukhwan Uraipong",
+          "team": "2117160602",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-25 07:24",
+          "type": "Status Change",
+          "operator": "Mrs.Nipaporn Yuenman",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-25 07:24",
+          "type": "Resolved",
+          "operator": "Mrs.Nipaporn Yuenman",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-25 07:25",
+          "type": "Status Change",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-25 07:44",
+          "type": "Closure",
+          "operator": "Mrs.Nipaporn Yuenman",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-25 07:44",
+          "type": "Phase Change",
+          "operator": "Mrs.Nipaporn Yuenman",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-25 07:44",
+          "type": "Closed",
+          "operator": "Mrs.Nipaporn Yuenman",
+          "team": "5117050000",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-25 07:45",
+          "type": "Status Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        },
+        {
+          "timestamp": "2025-10-25 07:45",
+          "type": "Phase Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Escalation Level 1 Email  Incident Number: SNI3991591 Short Description: [SUPPLIER] CAT |SNI3991591 | 5050007797 | Link "
+        }
+      ]
+    },
+    {
+      "id": "SD25167850",
+      "n_events": 25,
+      "duration_hr": 8.7,
+      "open_time": "2025-10-04 10:28",
+      "close_time": "2025-10-04 19:11",
+      "description": "Priority changed from \"NONE\" to \"3\"",
+      "resolution": "ตรวจสอบ OLT up 18.30 น. การไฟฟ้านครสวรรค์เข้าเปลี่ยนดรอปฟิวส์ เรียบร้อย ขอปิดงานครับ",
+      "cause": "NT--> 2:Last Mile--> 7:Facility(Last Mile)--> LF01:AC Power Line",
+      "events": [
+        {
+          "timestamp": "2025-10-04 10:29",
+          "type": "Priority Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 10:29",
+          "type": "Assignee Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 10:29",
+          "type": "Phase Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 10:29",
+          "type": "Assignment Group Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 10:30",
+          "type": "Reassignment",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 10:30",
+          "type": "Status Change",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 10:30",
+          "type": "Operator update",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 10:30",
+          "type": "Priority Change",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 10:40",
+          "type": "Operator update",
+          "operator": "Mr.Thanapong Damsanit",
+          "team": "4815302700",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 11:01",
+          "type": "Attachment Added",
+          "operator": "Mr.Thanapong Damsanit",
+          "team": "4815302700",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 11:01",
+          "type": "Operator update",
+          "operator": "Mr.Thanapong Damsanit",
+          "team": "4815302700",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 11:07",
+          "type": "Status Change",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 11:07",
+          "type": "Operator update",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 18:34",
+          "type": "Reassignment",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 18:34",
+          "type": "Status Change",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 18:34",
+          "type": "Complete",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 18:35",
+          "type": "Reassignment",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 18:35",
+          "type": "Complete",
+          "operator": "นาย กลศาสตร์ ภูมิพันธ์",
+          "team": "4815050001",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 19:11",
+          "type": "Status Change",
+          "operator": "Ms.Uraiwan Suwansin",
+          "team": "3015123600",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 19:11",
+          "type": "Resolved",
+          "operator": "Ms.Uraiwan Suwansin",
+          "team": "3015123600",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 19:11",
+          "type": "Closure",
+          "operator": "Ms.Uraiwan Suwansin",
+          "team": "3015123600",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 19:11",
+          "type": "Phase Change",
+          "operator": "Ms.Uraiwan Suwansin",
+          "team": "3015123600",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 19:11",
+          "type": "Closed",
+          "operator": "Ms.Uraiwan Suwansin",
+          "team": "3015123600",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 19:12",
+          "type": "Status Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        },
+        {
+          "timestamp": "2025-10-04 19:12",
+          "type": "Phase Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "Down ทั้งหมด Site down วันที่ 04/10/2025 เวลา 09:56"
+        }
+      ]
+    },
+    {
+      "id": "SD25167897",
+      "n_events": 27,
+      "duration_hr": 403.9,
+      "open_time": "2025-10-04 13:31",
+      "close_time": "2025-10-21 09:26",
+      "description": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง",
+      "resolution": "สาย optic  2 c  ขาดเนื่องจากหนูกัดในฝ้าภายในบ้านลูกค้า  ลูกค้าให้ผู้รับเหมามาทำช่อง  service  จนท.เวร ตัดต่อ optic",
+      "cause": "NT--> 2:Last Mile--> 5:Line (Last Mile)--> LL08:Fiber Optic Drop Wire/FTTx Drop Cable",
+      "events": [
+        {
+          "timestamp": "2025-10-04 13:31",
+          "type": "Open",
+          "operator": "Ms.Chotimar Meeprempree",
+          "team": "2117160601",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 13:31",
+          "type": "Status Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 13:34",
+          "type": "Reassignment",
+          "operator": "Mr.Narodom  Chomhom",
+          "team": "2715141402",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 13:34",
+          "type": "Status Change",
+          "operator": "Mr.Narodom  Chomhom",
+          "team": "2715141402",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 13:34",
+          "type": "Operator update",
+          "operator": "Mr.Narodom  Chomhom",
+          "team": "2715141402",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 13:37",
+          "type": "Status Change",
+          "operator": "Mr.Tanawit Puttaphruck",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 13:37",
+          "type": "Operator update",
+          "operator": "Mr.Tanawit Puttaphruck",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 16:02",
+          "type": "Operator update",
+          "operator": "Mr.Tanawit Puttaphruck",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 16:05",
+          "type": "Status Change",
+          "operator": "นางสาว พีรยา บุญชู",
+          "team": "2715141402",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-04 16:05",
+          "type": "Operator update",
+          "operator": "นางสาว พีรยา บุญชู",
+          "team": "2715141402",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-15 16:57",
+          "type": "Operator update",
+          "operator": "Mr.Noppon Promdang",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-16 16:31",
+          "type": "Canceled",
+          "operator": "Ms.Chotimar Meeprempree",
+          "team": "2117160601",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 08:09",
+          "type": "Status Change",
+          "operator": "Mr.Thaveesak Chouisuka",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 08:09",
+          "type": "Operator update",
+          "operator": "Mr.Thaveesak Chouisuka",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:17",
+          "type": "Operator update",
+          "operator": "Mr.Thaveesak Chouisuka",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:17",
+          "type": "Operator update",
+          "operator": "Mr.Thaveesak Chouisuka",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:19",
+          "type": "Reassignment",
+          "operator": "Mr.Thaveesak Chouisuka",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:19",
+          "type": "Status Change",
+          "operator": "Mr.Thaveesak Chouisuka",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:19",
+          "type": "Complete",
+          "operator": "Mr.Thaveesak Chouisuka",
+          "team": "2715223300",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:23",
+          "type": "Status Change",
+          "operator": "Mr.Siriwat Narksukparn",
+          "team": "2715141402",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:23",
+          "type": "Resolved",
+          "operator": "Mr.Siriwat Narksukparn",
+          "team": "2715141402",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:23",
+          "type": "Status Change",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:26",
+          "type": "Closure",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:26",
+          "type": "Phase Change",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:26",
+          "type": "Closed",
+          "operator": "scheduledAction",
+          "team": "none",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:27",
+          "type": "Status Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        },
+        {
+          "timestamp": "2025-10-21 09:27",
+          "type": "Phase Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "(MULTI) FTTx Connect ไม่ได้ ไฟ PON ติดนิ่ง Status TSP ใช้งาน / ตวจสอบ CSS ตรวจสอบไม่ได้ มีไฟติดสีแดง"
+        }
+      ]
+    },
+    {
+      "id": "SD25173894",
+      "n_events": 58,
+      "duration_hr": 54.9,
+      "open_time": "2025-10-22 09:01",
+      "close_time": "2025-10-24 15:54",
+      "description": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58",
+      "resolution": "สรุป OFC 48C ขาดจาก Site.เขานิพันธ์ ระยะ 23.90 กม. สาเหตุเกิดจาก กระแสน้ำ ไหลเชี่ยวพัดเคเบิ้ลขาด  วิธีแก้ไข ร่น Loop 300 เมตร ตัดต่อใหม่ 48C 1 หัวใหม่ / อุปกรณ์ที่ใช้  Closure 48C 1Set. / UP 15:05 น. ",
+      "cause": "NT--> 1:Network--> 1:Line (Network)--> NL05:Fiber Optic Cable",
+      "events": [
+        {
+          "timestamp": "2025-10-22 09:01",
+          "type": "Open",
+          "operator": "Mr.Widtaya Supamoon",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:02",
+          "type": "Reassignment",
+          "operator": "Mr.Widtaya Supamoon",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:02",
+          "type": "Status Change",
+          "operator": "Mr.Widtaya Supamoon",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:02",
+          "type": "Operator update",
+          "operator": "Mr.Widtaya Supamoon",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:02",
+          "type": "Priority Change",
+          "operator": "Mr.Widtaya Supamoon",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:02",
+          "type": "Priority Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:02",
+          "type": "Assignee Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:02",
+          "type": "Phase Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:02",
+          "type": "Assignment Group Change",
+          "operator": "linker",
+          "team": "none",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:04",
+          "type": "Reassignment",
+          "operator": "Mr.Pongsak Langoo",
+          "team": "5119050000",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:04",
+          "type": "Status Change",
+          "operator": "Mr.Pongsak Langoo",
+          "team": "5119050000",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:04",
+          "type": "Operator update",
+          "operator": "Mr.Pongsak Langoo",
+          "team": "5119050000",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:20",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 09:42",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 10:46",
+          "type": "Operator update",
+          "operator": "Mr.Aeknarin Satthaphon",
+          "team": "5119050000",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 11:04",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 11:18",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 11:36",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 11:42",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 12:20",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 13:34",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 14:01",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 15:13",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 15:26",
+          "type": "Operator update",
+          "operator": "Mr.Widtaya Supamoon",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 15:30",
+          "type": "Canceled",
+          "operator": "Mr.Suthitpol Siricharoen",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Attachment Added",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Operator update",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Subcategory Change",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 16:55",
+          "type": "Area Change",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 17:01",
+          "type": "Reassignment",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 17:01",
+          "type": "Status Change",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 17:01",
+          "type": "Complete",
+          "operator": "Mr.Nattasit Saepua",
+          "team": "5119050001",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 18:33",
+          "type": "Reassignment",
+          "operator": "Mr.Suriyavut Dumsongsri",
+          "team": "5119050000",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-22 18:33",
+          "type": "Complete",
+          "operator": "Mr.Suriyavut Dumsongsri",
+          "team": "5119050000",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-23 06:33",
+          "type": "Status Change",
+          "operator": "Mr.Suthitpol Siricharoen",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-23 06:33",
+          "type": "Resolved",
+          "operator": "Mr.Suthitpol Siricharoen",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-24 11:00",
+          "type": "Status Change",
+          "operator": "Mr.Preedee Leehem",
+          "team": "2117160602",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-24 11:00",
+          "type": "Phase Change",
+          "operator": "Mr.Preedee Leehem",
+          "team": "2117160602",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-24 15:54",
+          "type": "Closure",
+          "operator": "Mr.Natthawutcharapong Wongruksa",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-24 15:54",
+          "type": "Phase Change",
+          "operator": "Mr.Natthawutcharapong Wongruksa",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        },
+        {
+          "timestamp": "2025-10-24 15:54",
+          "type": "Closed",
+          "operator": "Mr.Natthawutcharapong Wongruksa",
+          "team": "2715180300",
+          "note": "DWDM Alcatel 100G: สถานีบ้านส้อง-สค.ทุ่งสง down at 08:58"
+        }
+      ]
+    }
+  ],
+  "audit_tickets": [
+    {
+      "id": "SD25167770",
+      "open_time": "2025-10-04 07:34",
+      "duration_hr": 24.4,
+      "n_events": 26,
+      "description": "Priority changed from \"NONE\" to \"3\"",
+      "resolution": "-",
+      "cause": "CU--> 3:Line--> SuL:In house wiring",
+      "flags": [
+        "Template Resolution",
+        "Resolution Too Short"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169383",
+      "open_time": "2025-10-09 08:35",
+      "duration_hr": 1.5,
+      "n_events": 27,
+      "description": "Proactive_noc monitor link down// รบกวนตรวจสอบด้วยค่ะ",
+      "resolution": "ไฟฟ้ามาปกติ /// ไฟฟ้าดับ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25175623",
+      "open_time": "2025-10-27 11:43",
+      "duration_hr": 45.7,
+      "n_events": 40,
+      "description": "Down ทั้งหมด/ลูกค้า คุณอัครพล 0824479350 ขอให้เเจ้งอัปเดตเป็นระยะทุกๆ2 ชม. ครับ",
+      "resolution": "สาเหตุ     ไฟฟ้าดับที่ลูกค้า   คืนดีหลังไฟฟ้ามาปกติ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25168859",
+      "open_time": "2025-10-07 15:39",
+      "duration_hr": 0.4,
+      "n_events": 23,
+      "description": "Proactive_noc monitor link down// รบกวนตรวจสอบด้วยค่ะ",
+      "resolution": "ไฟฟ้ามาปกติ /// ไฟฟ้าดับ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25175641",
+      "open_time": "2025-10-27 12:20",
+      "duration_hr": 24.2,
+      "n_events": 16,
+      "description": "Attachment \"229638.jpg\" added.",
+      "resolution": "ปิดงาน",
+      "cause": "NC--> 13:Other cause--> NoO:เปลี่ยนคอร์",
+      "flags": [
+        "Template Resolution",
+        "Resolution Too Short"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25174666",
+      "open_time": "2025-10-24 08:56",
+      "duration_hr": 4.5,
+      "n_events": 24,
+      "description": "Monitor Link Down รบกวนตรวจสอบด้วยครับ ---------------------------------------------------------------------- Pinging 10",
+      "resolution": "สาเหตุ//แก้ไข   ตรวจสอบ ONU Alarm Dying-Gasp ที่ลูกค้า  ///  ระบบไฟฟ้ากลับมาวงจรคืนดี",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25173020",
+      "open_time": "2025-10-19 22:34",
+      "duration_hr": 16.4,
+      "n_events": 18,
+      "description": "Link Down ประมาณช่วงเวลา 22.14 น. คุณเอกวี 021021199",
+      "resolution": "สาเหตุ ไฟฟ้าดับที่ลูกค้า  คืนดีหลังจากไฟฟ้ามาปกติ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25170979",
+      "open_time": "2025-10-14 08:22",
+      "duration_hr": 1.8,
+      "n_events": 27,
+      "description": "Link Down รบกวนตรวจสอบด้วยครับ",
+      "resolution": "ไฟฟ้าดับที่ลูกค้า // ไฟมาวงจรคืนดี",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25173859",
+      "open_time": "2025-10-22 06:41",
+      "duration_hr": 4.5,
+      "n_events": 16,
+      "description": "Priority changed from \"NONE\" to \"3\"",
+      "resolution": "ปิดงาน",
+      "cause": "NC--> 13:Other cause--> NoO:ไฟฟ้าดับ ,ไฟตก",
+      "flags": [
+        "Template Resolution",
+        "Resolution Too Short"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169377",
+      "open_time": "2025-10-09 08:28",
+      "duration_hr": 3.1,
+      "n_events": 29,
+      "description": "Link Down รบกวนตรวจสอบด้วยครับ",
+      "resolution": "ไฟฟ้าดับที่ลูกค้า // ไฟมาวงจรคืนดี",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25174663",
+      "open_time": "2025-10-24 08:56",
+      "duration_hr": 6.5,
+      "n_events": 20,
+      "description": "Down ทั้งหมด",
+      "resolution": "ไฟฟ้า กฟภ.ขัดข้อง / กฟภ.แก้ไข",
+      "cause": "Partner--> 2:Last Mile--> PLL01:Bad Contact",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169380",
+      "open_time": "2025-10-09 08:33",
+      "duration_hr": 3.8,
+      "n_events": 34,
+      "description": "แจ้งลิงค์ดาวน์ครับ โครงการชลประทานนครราชสีมา RID063952 โครงการชลประทานบึงกาฬ RID110197 Down ทั้งหมด",
+      "resolution": "สาเหตุ   ไฟฟ้าดับที่ลูกค้า คืนดีหลังจากไฟฟ้ามาปกติ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25175665",
+      "open_time": "2025-10-27 13:28",
+      "duration_hr": 427.7,
+      "n_events": 37,
+      "description": "Link 3G MSTP+ 8005-PYO-024_H - 8014-PYO-001_H // บ้านท่าฟ้าใต้  - บ้านห้วยข้าวก่ำ (จุน 1) Down   รบกวนพื้นที่ตรวจสอบด้วย",
+      "resolution": "ปิดงาน",
+      "cause": "NT--> 2:Last Mile--> 5:Line (Last Mile)--> LL06:Fiber Optic Cable",
+      "flags": [
+        "Template Resolution",
+        "Resolution Too Short"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169381",
+      "open_time": "2025-10-09 08:34",
+      "duration_hr": 11.3,
+      "n_events": 26,
+      "description": "Proactive_noc monitor link down// รบกวนตรวจสอบด้วยค่ะ",
+      "resolution": "ไฟฟ้าปกติวงจรคืนดี ไฟฟ้าดับ ลูกค้า",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25172986",
+      "open_time": "2025-10-19 17:12",
+      "duration_hr": 0.8,
+      "n_events": 30,
+      "description": "ลูกค้าแจ้งวงจร Down ผ่านทางไลน์ รบกวนตรวจสอบด้วยครับ",
+      "resolution": "ไฟฟ้ามาปกติ///ไฟฟ้าดับ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169151",
+      "open_time": "2025-10-08 13:44",
+      "duration_hr": 2.5,
+      "n_events": 23,
+      "description": "Reassignment from อป. East Callcenter [ Tier 1 ] to อป. บอป.2 (ระยอง) [ Tier 2 ] คุณอรรถพล แจ้ง ไฟฟ้าพื้นที่ดับ",
+      "resolution": "ปิดงาน",
+      "cause": "NC--> 8:Accidents--> NoA:Other accidents : weapon, animal",
+      "flags": [
+        "Template Resolution",
+        "Resolution Too Short"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25174009",
+      "open_time": "2025-10-22 11:26",
+      "duration_hr": 0.3,
+      "n_events": 18,
+      "description": "Monitor  link Down  รบกวนตรวจสอบด้วยค่ะ  ขอบคุณคะ",
+      "resolution": "ไฟฟ้ามาปกติ ///ไฟฟ้าดับ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25174978",
+      "open_time": "2025-10-24 23:34",
+      "duration_hr": 2.0,
+      "n_events": 29,
+      "description": "Monitor link Down รบกวนตรวจสอบด้วยครับ",
+      "resolution": "ระบบไฟฟ้าคืนดี // ไฟฟ้าดับ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25174004",
+      "open_time": "2025-10-22 11:21",
+      "duration_hr": 0.5,
+      "n_events": 26,
+      "description": "Monitor  link Down  รบกวนตรวจสอบด้วยค่ะ ขอบคุณคะ",
+      "resolution": "ไฟฟ้ามาปกติ // ไฟฟ้าดับ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169401",
+      "open_time": "2025-10-09 09:07",
+      "duration_hr": 1.5,
+      "n_events": 17,
+      "description": "GDI038078 สำนักงานทางหลวงชนบทพัทลุง GDI044895 สขจ.พัทลุง GDI037850 ท่าอากาศยาน.อุดรธานี link down เปิดงาน 3 วงจรครับ /อภ",
+      "resolution": "สาเหตุ   ไฟฟ้าดับที่ลูกค้า คืนดีหลังจากไฟฟ้ามาปกติ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25174658",
+      "open_time": "2025-10-24 08:55",
+      "duration_hr": 6.6,
+      "n_events": 19,
+      "description": "Down ทั้งหมดค่ะ คุณสุชารัตน์ 0970980657",
+      "resolution": "ไฟฟ้า กฟภ.ขัดข้อง / กฟภ.แก้ไข",
+      "cause": "Partner--> 2:Last Mile--> PLL01:Bad Contact",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169403",
+      "open_time": "2025-10-09 09:07",
+      "duration_hr": 1.6,
+      "n_events": 30,
+      "description": "GDI038078 สำนักงานทางหลวงชนบทพัทลุง GDI044895 สขจ.พัทลุง GDI037850 ท่าอากาศยาน.อุดรธานี link down เปิดงาน 3 วงจรครับ /อภ",
+      "resolution": "สาเหตุ   ไฟฟ้าดับที่ลูกค้า คืนดีหลังจากไฟฟ้ามาปกติ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169408",
+      "open_time": "2025-10-09 09:12",
+      "duration_hr": 1.9,
+      "n_events": 23,
+      "description": "Dear Sir/Madam,  New incident  We are encountering the problem which effected to circuit as details below;  JasTel's Ref",
+      "resolution": "สาเหตุ   ไฟฟ้าดับที่ลูกค้า คืนดีหลังจากไฟฟ้ามาปกติ",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25175719",
+      "open_time": "2025-10-27 14:58",
+      "duration_hr": 92.2,
+      "n_events": 20,
+      "description": "Priority changed from \"NONE\" to \"3\"",
+      "resolution": "ปิดงาน",
+      "cause": "NT--> 2:Last Mile--> 5:Line (Last Mile)--> LL06:Fiber Optic Cable",
+      "flags": [
+        "Template Resolution",
+        "Resolution Too Short"
+      ],
+      "flag_count": 2
+    },
+    {
+      "id": "SD25169420",
+      "open_time": "2025-10-09 09:29",
+      "duration_hr": 10.4,
+      "n_events": 25,
+      "description": "Mornitor link Down รบกวนตรวจสอบด้วยครับ",
+      "resolution": "ไฟฟ้าปกติวงจรคืนดี ไฟฟ้าดับ ลูกค้า",
+      "cause": "CU--> 5:Power System--> SuP:Power Outage",
+      "flags": [
+        "Template Resolution",
+        "Topic Mismatch (network → power)"
+      ],
+      "flag_count": 2
+    }
+  ]
+}
