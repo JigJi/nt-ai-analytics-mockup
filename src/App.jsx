@@ -17,17 +17,6 @@ const NAV_ITEMS = [
     ),
   },
   {
-    id: 'timeline',
-    label: 'Timeline Explorer',
-    sublabel: 'The Complexity',
-    icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
-  {
     id: 'copilot',
     label: 'AI Copilot',
     sublabel: 'The Suggestion',
@@ -54,7 +43,7 @@ const NAV_ITEMS = [
 export default function App() {
   const [activePage, setActivePage] = useState('dashboard')
 
-  const pages = { dashboard: Dashboard, timeline: TimelineExplorer, copilot: AICopilot, audit: AIAuditMonitor }
+  const pages = { dashboard: Dashboard, copilot: AICopilot, audit: AIAuditMonitor }
   const ActivePage = pages[activePage]
 
   return (

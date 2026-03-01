@@ -1,0 +1,55 @@
+{
+  "audit_metadata": {
+    "total_tickets": 6665
+  },
+  "groups": [
+    {
+      "id": "normal",
+      "title": "Normal / Standard Cases",
+      "count": 3120,
+      "description": "เคสที่ดำเนินการปิดงานได้ตาม SLA และมีขั้นตอนการทำงานที่ชัดเจน",
+      "color": "green",
+      "severity": "None"
+    },
+    {
+      "id": "data_quality",
+      "title": "Data Quality Issues",
+      "count": 1117,
+      "description": "เคสที่ระบุสาเหตุเป็น 'อื่นๆ' ทั้งที่มี Keyword ระบุสาเหตุชัดเจนใน Note",
+      "color": "red",
+      "severity": "High"
+    },
+    {
+      "id": "silent_closure",
+      "title": "Suspicious Silent Closure",
+      "count": 950,
+      "description": "เคสที่ปิดงานเร็วผิดปกติและขาดหลักฐานยืนยันที่จำเป็น (เช่น รูปภาพ/ผลเทส)",
+      "color": "yellow",
+      "severity": "Medium"
+    },
+    {
+      "id": "recurring",
+      "title": "Recurring Faults",
+      "count": 820,
+      "description": "จุดเดิมแจ้งเสียซ้ำซ้อนเกิน 1 ครั้งในรอบสัปดาห์ (เสี่ยงอุปกรณ์เสื่อมสภาพ)",
+      "color": "purple",
+      "severity": "High"
+    },
+    {
+      "id": "problematic",
+      "title": "High Risk Interaction",
+      "count": 418,
+      "description": "ใบงานที่มีการโต้ตอบสูงหรือลัดคิวงานบ่อยครั้ง (เสี่ยงต่อการ Complaint)",
+      "color": "orange",
+      "severity": "Medium"
+    },
+    {
+      "id": "tech_noise",
+      "title": "Technical Noise",
+      "count": 240,
+      "description": "ปัญหาปัจจัยภายนอกที่ไม่เกี่ยวกับโครงข่ายหลัก (เช่น อุปกรณ์ส่วนตัวลูกค้า)",
+      "color": "slate",
+      "severity": "Low"
+    }
+  ]
+}

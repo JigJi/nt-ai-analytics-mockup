@@ -1,285 +1,226 @@
 import { useState } from 'react'
-import data from '../mockup_data.json'
 
-const { audit_tickets, summary } = data
+const GROUPS = [
+  { id: 'normal',         title: 'Normal / Standard Cases',    count: 3120, description: 'ปิดงานตาม SLA มีขั้นตอนครบถ้วน',               color: 'green',  severity: 'None'   },
+  { id: 'data_quality',   title: 'Data Quality Issues',        count: 1117, description: "ระบุสาเหตุ 'อื่นๆ' ทั้งที่มี Keyword ชัดเจนใน Note", color: 'red',    severity: 'High'   },
+  { id: 'silent_closure', title: 'Suspicious Silent Closure',  count:  950, description: 'ปิดงานเร็วผิดปกติ ขาดรูปภาพหรือผลเทสประกอบ',     color: 'yellow', severity: 'Medium' },
+  { id: 'recurring',      title: 'Recurring Faults',           count:  820, description: 'แจ้งเสียซ้ำจุดเดิมภายใน 1 สัปดาห์',              color: 'purple', severity: 'High'   },
+  { id: 'problematic',    title: 'High Risk Interaction',      count:  418, description: 'โต้ตอบสูงหรือลัดคิวบ่อย เสี่ยง Complaint',       color: 'orange', severity: 'Medium' },
+  { id: 'tech_noise',     title: 'Technical Noise',            count:  240, description: 'ปัญหาอุปกรณ์ลูกค้า ไม่เกี่ยวโครงข่ายหลัก',       color: 'slate',  severity: 'Low'    },
+]
 
-const FLAG_CONFIG = {
-  'Template Resolution':  { color: '#D69E2E', bg: '#FFFBEB', icon: '📋' },
-  'Resolution Too Short': { color: '#E53E3E', bg: '#FFF5F5', icon: '⚡' },
-  'Missing Cause':        { color: '#805AD5', bg: '#FAF5FF', icon: '❓' },
+const TOTAL_MONITORED = 6665
+
+const COLOR_CONFIG = {
+  red:    { border: '#FEB2B2', bg: '#FFF5F5', text: '#C53030' },
+  purple: { border: '#D6BCFA', bg: '#FAF5FF', text: '#6B46C1' },
+  orange: { border: '#FBD38D', bg: '#FFFAF0', text: '#C05621' },
+  yellow: { border: '#F6E05E', bg: '#FFFFF0', text: '#975A16' },
+  slate:  { border: '#CBD5E0', bg: '#F7FAFC', text: '#4A5568' },
+  green:  { border: '#9AE6B4', bg: '#F0FFF4', text: '#276749' },
 }
 
-function flagConfig(flag) {
-  for (const [key, cfg] of Object.entries(FLAG_CONFIG)) {
-    if (flag.startsWith(key)) return { ...cfg, label: flag }
-  }
-  // Topic Mismatch
-  if (flag.startsWith('Topic Mismatch')) {
-    return { color: '#E53E3E', bg: '#FFF5F5', icon: '🔀', label: flag }
-  }
-  return { color: '#6B7280', bg: '#F9FAFB', icon: '⚠️', label: flag }
+const SEVERITY_CONFIG = {
+  High:   { color: '#C53030', bg: '#FFF5F5' },
+  Medium: { color: '#C05621', bg: '#FFFAF0' },
+  Low:    { color: '#4A5568', bg: '#F7FAFC' },
+  None:   { color: '#276749', bg: '#F0FFF4' },
 }
 
-const ALL_FLAG_TYPES = ['ทั้งหมด', 'Template Resolution', 'Resolution Too Short', 'Missing Cause', 'Topic Mismatch']
+const TICKET_LIST = [
+  // normal
+  { id: 'SD25174355', group: 'normal',         open: '2025-10-23', close: '2025-10-23', cause: 'NT --> Last Mile --> MH01:Router/ONT',         note: 'ลงพื้นที่เปลี่ยน Patch Cord สำเร็จ ปิดงานตาม SLA' },
+  { id: 'SD25168012', group: 'normal',         open: '2025-10-05', close: '2025-10-05', cause: 'CU --> Power System --> SuP:Power Outage',      note: 'ไฟฟ้า กฟภ. คืนดี วงจรกลับมาปกติ' },
+  { id: 'SD25171340', group: 'normal',         open: '2025-10-14', close: '2025-10-15', cause: 'NT --> Last Mile --> LE13:Router',              note: 'Reboot Router สำเร็จ ทดสอบ Ping ผ่านทุก Endpoint' },
+  { id: 'SD25176102', group: 'normal',         open: '2025-10-29', close: '2025-10-29', cause: 'NT --> Last Mile --> LL06:Fiber Optic Cable',   note: 'เชื่อมต่อสาย F/O ใหม่ ยิงแสงผ่าน ปิดงานเรียบร้อย' },
+  // data_quality
+  { id: 'SD25169250', group: 'data_quality',   open: '2025-10-08', close: '2025-10-09', cause: 'NC --> Other Cause --> NoO:อื่นๆ',             note: 'Note ระบุ "สายขาด" แต่ Cause เลือก อื่นๆ ไม่ตรง' },
+  { id: 'SD25172910', group: 'data_quality',   open: '2025-10-18', close: '2025-10-19', cause: 'NC --> Other Cause --> NoO:อื่นๆ',             note: 'Log มี Keyword "ไฟดับ" แต่ Cause ไม่ตรงกับ Power Outage' },
+  { id: 'SD25175300', group: 'data_quality',   open: '2025-10-27', close: '2025-10-28', cause: 'NC --> Other Cause --> NoO:อื่นๆ',             note: 'บันทึก "Router แฮงค์" แต่ Cause Category ไม่ระบุอุปกรณ์' },
+  { id: 'SD25173020', group: 'data_quality',   open: '2025-10-19', close: '2025-10-20', cause: 'NC --> Other Cause --> NoO:อื่นๆ',             note: 'ช่างระบุสายขาดชัดเจน แต่ผู้บันทึกเลือก Cause ผิดประเภท' },
+  // silent_closure
+  { id: 'SD25168859', group: 'silent_closure', open: '2025-10-07', close: '2025-10-07', cause: 'CU --> Power System --> SuP:Power Outage',     note: 'ปิดงานใน 0.4h ไม่มีรูปถ่ายหรือผลยืนยันจากลูกค้า' },
+  { id: 'SD25174009', group: 'silent_closure', open: '2025-10-22', close: '2025-10-22', cause: 'CU --> Power System --> SuP:Power Outage',     note: 'ปิดงาน 0.3h ไม่มี Confirmation ขาดขั้นตอน Verification' },
+  { id: 'SD25172986', group: 'silent_closure', open: '2025-10-19', close: '2025-10-19', cause: 'CU --> Power System --> SuP:Power Outage',     note: 'ระยะเวลา 0.8h ไม่มีผลเทสหรือหลักฐานแนบประกอบ' },
+  { id: 'SD25174004', group: 'silent_closure', open: '2025-10-22', close: '2025-10-22', cause: 'CU --> Power System --> SuP:Power Outage',     note: 'ปิดงานเร็วผิดปกติ ขาดขั้นตอน Sign-off จากลูกค้า' },
+  // recurring
+  { id: 'SD25169377', group: 'recurring',      open: '2025-10-09', close: '2025-10-09', cause: 'CU --> Power System --> SuP:Power Outage',     note: 'พื้นที่เดิม แจ้งซ้ำครั้งที่ 3 ภายในสัปดาห์เดียวกัน' },
+  { id: 'SD25169381', group: 'recurring',      open: '2025-10-09', close: '2025-10-10', cause: 'CU --> Power System --> SuP:Power Outage',     note: 'ONU เดิมแจ้งซ้ำภายใน 5 วัน เสี่ยงอุปกรณ์เสื่อม' },
+  { id: 'SD25170979', group: 'recurring',      open: '2025-10-14', close: '2025-10-14', cause: 'CU --> Power System --> SuP:Power Outage',     note: 'ลูกค้ารายเดิม Ticket ที่ 2 ในรอบ 7 วัน' },
+  { id: 'SD25169403', group: 'recurring',      open: '2025-10-09', close: '2025-10-09', cause: 'CU --> Power System --> SuP:Power Outage',     note: 'จุดเดิมแจ้งซ้ำ ควรเสนอเปลี่ยนอุปกรณ์ถาวร' },
+  // problematic
+  { id: 'SD25185285', group: 'problematic',    open: '2025-10-28', close: '2025-11-04', cause: 'NT --> Last Mile --> LE13:Router',              note: 'ตามงานครั้งที่ 7 อุปกรณ์แฮงค์ซ้ำจากความร้อน' },
+  { id: 'SD25175665', group: 'problematic',    open: '2025-10-27', close: '2025-11-14', cause: 'NT --> Last Mile --> LL06:Fiber Optic Cable',   note: 'Reassign 5 ครั้ง ไม่สามารถระบุจุดขาดได้ชัดเจน' },
+  { id: 'SD25175719', group: 'problematic',    open: '2025-10-27', close: '2025-10-31', cause: 'NT --> Last Mile --> LL06:Fiber Optic Cable',   note: 'ส่งงานวนระหว่าง Tier 2–3 เกิน 8 ครั้ง ลูกค้า Escalate' },
+  { id: 'SD25167770', group: 'problematic',    open: '2025-10-04', close: '2025-10-05', cause: 'CU --> Line --> SuL:In house wiring',           note: 'โต้ตอบ 26 ครั้ง ลูกค้าร้องเรียนความล่าช้า' },
+  // tech_noise
+  { id: 'SD25169151', group: 'tech_noise',     open: '2025-10-08', close: '2025-10-08', cause: 'NC --> Accidents --> NoA:Other accidents',      note: 'ลูกค้ายืนยันปัญหาจาก Router ส่วนตัวเสียเอง ไม่ใช่โครงข่าย' },
+  { id: 'SD25174663', group: 'tech_noise',     open: '2025-10-24', close: '2025-10-24', cause: 'Partner --> Last Mile --> PLL01:Bad Contact',   note: 'สายภายในบ้านลูกค้าชำรุด ไม่เกี่ยวกับโครงข่ายหลัก' },
+  { id: 'SD25169408', group: 'tech_noise',     open: '2025-10-09', close: '2025-10-09', cause: 'CU --> Line --> SuL:In house wiring',           note: 'อุปกรณ์ ONU ลูกค้าเสียเอง ไม่พบปัญหาจาก NT' },
+  { id: 'SD25174658', group: 'tech_noise',     open: '2025-10-24', close: '2025-10-24', cause: 'Partner --> Last Mile --> PLL01:Bad Contact',   note: 'ไฟฟ้า กฟภ. ขัดข้อง ไม่ใช่ความรับผิดชอบโครงข่าย NT' },
+]
 
 export default function AIAuditMonitor() {
-  const [filter, setFilter] = useState('ทั้งหมด')
-  const [selectedTicket, setSelectedTicket] = useState(null)
-  const [sortBy, setSortBy] = useState('flag_count')
+  const [selectedGroup, setSelectedGroup] = useState(null)
 
-  const filtered = audit_tickets
-    .filter(t => {
-      if (filter === 'ทั้งหมด') return true
-      return t.flags.some(f => f.startsWith(filter))
-    })
-    .sort((a, b) => {
-      if (sortBy === 'flag_count') return b.flag_count - a.flag_count
-      if (sortBy === 'duration')   return b.duration_hr - a.duration_hr
-      if (sortBy === 'events')     return b.n_events - a.n_events
-      return 0
-    })
+  const filtered = selectedGroup
+    ? TICKET_LIST.filter(t => t.group === selectedGroup)
+    : TICKET_LIST
 
-  const flagTypeCounts = {}
-  audit_tickets.forEach(t => t.flags.forEach(f => {
-    const key = ALL_FLAG_TYPES.find(k => k !== 'ทั้งหมด' && f.startsWith(k)) || f
-    flagTypeCounts[key] = (flagTypeCounts[key] || 0) + 1
-  }))
+  const toggleGroup = (id) => setSelectedGroup(prev => prev === id ? null : id)
 
   return (
     <div className="flex flex-col h-full fade-in">
       {/* Header */}
-      <div className="bg-white border-b border-gray-100 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-lg font-bold text-gray-900">AI Audit Monitor</h1>
-            <p className="text-xs text-gray-400 mt-0.5">
-              AI ตรวจพบ Ticket ที่มีข้อมูลไม่สมบูรณ์หรือผิดปกติจาก 186,184 events
-            </p>
-          </div>
-          {/* Summary pills */}
-          <div className="flex gap-3">
-            <div className="text-center px-4 py-2 rounded-xl border border-red-100 bg-red-50">
-              <p className="text-xl font-bold text-red-600">{summary.flagged_tickets.toLocaleString()}</p>
-              <p className="text-xs text-red-500">Tickets Flagged</p>
-            </div>
-            <div className="text-center px-4 py-2 rounded-xl border border-yellow-100 bg-yellow-50">
-              <p className="text-xl font-bold text-yellow-600">{summary.template_res_patterns}</p>
-              <p className="text-xs text-yellow-500">Template Patterns</p>
-            </div>
-            <div className="text-center px-4 py-2 rounded-xl border border-purple-100 bg-purple-50">
-              <p className="text-xl font-bold text-purple-600">{(summary.flagged_tickets/summary.total_tickets*100).toFixed(0)}%</p>
-              <p className="text-xs text-purple-500">ของ Tickets ทั้งหมด</p>
-            </div>
-          </div>
+      <div className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between flex-shrink-0">
+        <div>
+          <h1 className="text-lg font-bold text-gray-900">AI Audit Monitor</h1>
+          <p className="text-xs text-gray-400 mt-0.5">
+            AI ตรวจพบและจัดกลุ่ม Ticket ผิดปกติ — คลิกการ์ดเพื่อ Filter ตาราง
+          </p>
+        </div>
+        <div className="text-right">
+          <p className="text-2xl font-bold" style={{ color: '#2E3192' }}>{TOTAL_MONITORED.toLocaleString()}</p>
+          <p className="text-xs text-gray-400">Total Monitored</p>
         </div>
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Main list area */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Filters */}
-          <div className="bg-white border-b border-gray-100 px-6 py-3 flex items-center gap-3 flex-wrap">
-            <div className="flex gap-2 flex-wrap">
-              {ALL_FLAG_TYPES.map(f => (
-                <button key={f} onClick={() => setFilter(f)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
-                          filter === f
-                            ? 'text-white border-transparent'
-                            : 'bg-white text-gray-600 border-gray-200 hover:border-gray-300'
-                        }`}
-                        style={filter === f ? { background: '#2E3192' } : {}}>
-                  {f}
-                  {f !== 'ทั้งหมด' && flagTypeCounts[f] ? ` (${flagTypeCounts[f]})` : ''}
+      <div className="flex-1 overflow-y-auto">
+        {/* Summary Cards */}
+        <div className="px-6 pt-5 pb-2">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Issue Groups</p>
+          <div className="grid grid-cols-3 gap-3">
+            {GROUPS.map(g => {
+              const cfg = COLOR_CONFIG[g.color]
+              const sev = SEVERITY_CONFIG[g.severity]
+              const isSelected = selectedGroup === g.id
+              return (
+                <button
+                  key={g.id}
+                  onClick={() => toggleGroup(g.id)}
+                  className="text-left rounded-2xl border-2 p-4 transition-all hover:shadow-md active:scale-95"
+                  style={{
+                    background:  isSelected ? cfg.bg   : 'white',
+                    borderColor: isSelected ? cfg.text  : cfg.border,
+                    outline:     isSelected ? `3px solid ${cfg.border}` : 'none',
+                    outlineOffset: '2px',
+                  }}
+                >
+                  <div className="flex items-start justify-between mb-2">
+                    <p className="text-3xl font-bold leading-none" style={{ color: cfg.text }}>
+                      {g.count.toLocaleString()}
+                    </p>
+                    <span className="text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0 mt-0.5"
+                          style={{ background: sev.bg, color: sev.color }}>
+                      {g.severity}
+                    </span>
+                  </div>
+                  <p className="text-sm font-bold text-gray-800 mb-1">{g.title}</p>
+                  <div className="flex items-center justify-between gap-2 mt-1">
+                    <p className="text-xs text-gray-500 leading-snug">{g.description}</p>
+                    <span className="text-sm font-bold tabular-nums flex-shrink-0" style={{ color: cfg.text }}>
+                      {(g.count / TOTAL_MONITORED * 100).toFixed(1)}%
+                    </span>
+                  </div>
                 </button>
-              ))}
-            </div>
-            <div className="ml-auto flex items-center gap-2">
-              <span className="text-xs text-gray-400">เรียงตาม:</span>
-              <select value={sortBy} onChange={e => setSortBy(e.target.value)}
-                      className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-white text-gray-600 focus:outline-none">
-                <option value="flag_count">จำนวน Flags</option>
-                <option value="duration">ระยะเวลา</option>
-                <option value="events">จำนวน Events</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Flag type summary chips */}
-          <div className="px-6 py-3 bg-gray-50 border-b border-gray-100 flex gap-2 flex-wrap">
-            {Object.entries(FLAG_CONFIG).map(([key, cfg]) => (
-              <div key={key} className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium"
-                   style={{ background: cfg.bg, color: cfg.color }}>
-                <span>{cfg.icon}</span>
-                <span>{key}</span>
-                <span className="font-bold">{flagTypeCounts[key] || 0} tickets</span>
-              </div>
-            ))}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium"
-                 style={{ background: '#FFF5F5', color: '#E53E3E' }}>
-              <span>🔀</span>
-              <span>Topic Mismatch</span>
-              <span className="font-bold">
-                {audit_tickets.filter(t => t.flags.some(f => f.startsWith('Topic Mismatch'))).length} tickets
-              </span>
-            </div>
-          </div>
-
-          {/* Table */}
-          <div className="flex-1 overflow-y-auto">
-            <table className="w-full text-sm">
-              <thead className="sticky top-0 bg-white z-10">
-                <tr className="text-left text-xs text-gray-400 uppercase tracking-wide border-b border-gray-100">
-                  <th className="px-6 py-3 font-medium">Ticket ID</th>
-                  <th className="px-3 py-3 font-medium">เปิดเมื่อ</th>
-                  <th className="px-3 py-3 font-medium">Events</th>
-                  <th className="px-3 py-3 font-medium">Duration</th>
-                  <th className="px-3 py-3 font-medium">AI Flags</th>
-                  <th className="px-3 py-3 font-medium">Resolution (สั้น)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-50">
-                {filtered.map(t => (
-                  <tr key={t.id}
-                      onClick={() => setSelectedTicket(t.id === selectedTicket ? null : t.id)}
-                      className={`cursor-pointer transition-colors hover:bg-blue-50 ${
-                        t.id === selectedTicket ? 'bg-blue-50' : ''
-                      }`}>
-                    <td className="px-6 py-3">
-                      <p className="font-mono text-xs font-semibold text-gray-800">{t.id}</p>
-                    </td>
-                    <td className="px-3 py-3 text-xs text-gray-500 whitespace-nowrap">
-                      {t.open_time?.slice(0,10)}
-                    </td>
-                    <td className="px-3 py-3 text-xs font-medium text-gray-800">{t.n_events}</td>
-                    <td className="px-3 py-3 text-xs">
-                      <span className={`font-semibold ${t.duration_hr > 100 ? 'text-red-600' : t.duration_hr > 24 ? 'text-yellow-600' : 'text-gray-700'}`}>
-                        {t.duration_hr}h
-                      </span>
-                    </td>
-                    <td className="px-3 py-3">
-                      <div className="flex flex-wrap gap-1">
-                        {t.flags.map((f, i) => {
-                          const cfg = flagConfig(f)
-                          return (
-                            <span key={i} className="text-xs px-1.5 py-0.5 rounded-md font-medium"
-                                  style={{ background: cfg.bg, color: cfg.color }}>
-                              {cfg.icon} {cfg.label.length > 20 ? cfg.label.slice(0,18)+'…' : cfg.label}
-                            </span>
-                          )
-                        })}
-                      </div>
-                    </td>
-                    <td className="px-3 py-3 text-xs text-gray-500 max-w-xs">
-                      <p className="truncate" title={t.resolution}>{t.resolution || '—'}</p>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {filtered.length === 0 && (
-              <div className="flex items-center justify-center h-32 text-gray-400 text-sm">
-                ไม่มี Ticket ที่ตรงกับ Filter นี้
-              </div>
-            )}
-          </div>
-          <div className="px-6 py-2 bg-white border-t border-gray-100 text-xs text-gray-400">
-            แสดง {filtered.length} จาก {audit_tickets.length} Tickets ตัวอย่าง (ทั้งหมด {summary.flagged_tickets.toLocaleString()} ที่ถูก Flag)
+              )
+            })}
           </div>
         </div>
 
-        {/* Right: Ticket Detail Panel */}
-        {selectedTicket && (() => {
-          const t = audit_tickets.find(x => x.id === selectedTicket)
-          if (!t) return null
-          return (
-            <div className="w-80 flex-shrink-0 border-l border-gray-100 bg-white overflow-y-auto fade-in">
-              <div className="px-4 py-4 border-b border-gray-100 flex items-center justify-between">
-                <p className="font-semibold text-gray-800 text-sm">Ticket Detail</p>
-                <button onClick={() => setSelectedTicket(null)}
-                        className="text-gray-400 hover:text-gray-600 text-lg leading-none">×</button>
+        {/* Table */}
+        <div className="px-6 py-4">
+          <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            {/* Table toolbar */}
+            <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                  Ticket List
+                </p>
+                {selectedGroup ? (
+                  <>
+                    <span className="text-gray-300">·</span>
+                    <span className="text-xs px-2 py-0.5 rounded-full font-medium"
+                          style={{
+                            background: COLOR_CONFIG[GROUPS.find(g => g.id === selectedGroup)?.color]?.bg,
+                            color:      COLOR_CONFIG[GROUPS.find(g => g.id === selectedGroup)?.color]?.text,
+                          }}>
+                      {GROUPS.find(g => g.id === selectedGroup)?.title}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-gray-300">·</span>
+                    <span className="text-xs text-gray-400">ทั้งหมด</span>
+                  </>
+                )}
               </div>
-
-              <div className="p-4 space-y-4">
-                {/* ID & meta */}
-                <div>
-                  <p className="font-mono text-sm font-bold text-gray-900 mb-2">{t.id}</p>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      ['เปิดเมื่อ', t.open_time?.slice(0,16)],
-                      ['Duration', `${t.duration_hr}h`],
-                      ['Events', t.n_events],
-                      ['Flags', t.flag_count],
-                    ].map(([label, val]) => (
-                      <div key={label} className="rounded-lg bg-gray-50 p-2">
-                        <p className="text-xs text-gray-400">{label}</p>
-                        <p className="text-xs font-semibold text-gray-800">{val}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Flags */}
-                <div>
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">AI Flags</p>
-                  <div className="space-y-2">
-                    {t.flags.map((f, i) => {
-                      const cfg = flagConfig(f)
-                      return (
-                        <div key={i} className="rounded-xl p-3 border"
-                             style={{ background: cfg.bg, borderColor: cfg.color + '33' }}>
-                          <div className="flex items-center gap-2 mb-1">
-                            <span>{cfg.icon}</span>
-                            <span className="text-xs font-semibold" style={{ color: cfg.color }}>{cfg.label}</span>
-                          </div>
-                          {f === 'Template Resolution' && (
-                            <p className="text-xs text-gray-600">Resolution ซ้ำกับ Ticket อื่น &gt;5 ครั้ง — อาจไม่สะท้อนข้อเท็จจริง</p>
-                          )}
-                          {f === 'Resolution Too Short' && (
-                            <p className="text-xs text-gray-600">Resolution สั้นกว่า 10 ตัวอักษร — ไม่เพียงพอสำหรับ Audit</p>
-                          )}
-                          {f === 'Missing Cause' && (
-                            <p className="text-xs text-gray-600">ไม่มี CAUSE_DETAIL — ทำให้วิเคราะห์แนวโน้มไม่ได้</p>
-                          )}
-                          {f.startsWith('Topic Mismatch') && (
-                            <p className="text-xs text-gray-600">หัวข้อปัญหาเริ่มต้นไม่ตรงกับ Resolution สุดท้าย</p>
-                          )}
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-
-                {/* Description */}
-                <div className="rounded-xl bg-blue-50 p-3 border border-blue-100">
-                  <p className="text-xs text-blue-600 font-semibold mb-1">DESCRIPTION (Initial)</p>
-                  <p className="text-xs text-gray-700 leading-snug">{t.description || '—'}</p>
-                </div>
-
-                {/* Resolution */}
-                <div className="rounded-xl bg-gray-50 p-3 border border-gray-200">
-                  <p className="text-xs text-gray-500 font-semibold mb-1">RESOLUTION (Final)</p>
-                  <p className="text-xs text-gray-700 leading-snug">{t.resolution || '(ว่างเปล่า)'}</p>
-                </div>
-
-                {/* Cause */}
-                <div className="rounded-xl bg-purple-50 p-3 border border-purple-100">
-                  <p className="text-xs text-purple-600 font-semibold mb-1">CAUSE_DETAIL</p>
-                  <p className="text-xs text-gray-700 font-mono leading-snug">{t.cause || '(ไม่ระบุ)'}</p>
-                </div>
-
-                {/* AI Recommendation */}
-                <div className="rounded-xl p-3 border border-yellow-200" style={{ background: '#FFF9E6' }}>
-                  <p className="text-xs font-semibold mb-1" style={{ color: '#B7791F' }}>AI แนะนำ</p>
-                  <p className="text-xs text-gray-700 leading-snug">
-                    Ticket นี้ควรถูกส่งกลับให้ Engineer เพิ่มเติมข้อมูล
-                    {t.flags.includes('Template Resolution') && ' และเปลี่ยน Resolution ให้ตรงกับสถานการณ์จริง'}
-                    {t.flags.includes('Missing Cause') && ' พร้อมระบุ Cause Category ให้ครบ'}
-                  </p>
-                </div>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-gray-400">{filtered.length} tickets</span>
+                {selectedGroup && (
+                  <button
+                    onClick={() => setSelectedGroup(null)}
+                    className="text-xs px-2.5 py-1 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-all"
+                  >
+                    ล้าง Filter ×
+                  </button>
+                )}
               </div>
             </div>
-          )
-        })()}
+
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50 border-b border-gray-100">
+                <tr className="text-left text-xs text-gray-400 uppercase tracking-wide">
+                  <th className="px-4 py-3 font-medium">Interaction ID</th>
+                  <th className="px-4 py-3 font-medium">Group</th>
+                  <th className="px-4 py-3 font-medium">Open Date</th>
+                  <th className="px-4 py-3 font-medium">Close Date</th>
+                  <th className="px-4 py-3 font-medium">Cause Category</th>
+                  <th className="px-4 py-3 font-medium">Note</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-50">
+                {filtered.map(t => {
+                  const g   = GROUPS.find(x => x.id === t.group)
+                  const cfg = g ? COLOR_CONFIG[g.color] : COLOR_CONFIG.slate
+                  return (
+                    <tr key={t.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="px-4 py-3">
+                        <p className="font-mono text-xs font-semibold text-gray-800">{t.id}</p>
+                      </td>
+                      <td className="px-4 py-3">
+                        {g && (
+                          <span className="text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap"
+                                style={{ background: cfg.bg, color: cfg.text }}>
+                            {g.title}
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 text-xs text-gray-500 whitespace-nowrap">{t.open}</td>
+                      <td className="px-4 py-3 text-xs text-gray-500 whitespace-nowrap">{t.close}</td>
+                      <td className="px-4 py-3 text-xs font-mono text-gray-600 max-w-xs">
+                        <p className="truncate">{t.cause}</p>
+                      </td>
+                      <td className="px-4 py-3 text-xs text-gray-500 max-w-xs">
+                        <p className="truncate">{t.note}</p>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+
+            {filtered.length === 0 && (
+              <div className="flex items-center justify-center h-24 text-gray-400 text-sm">
+                ไม่มี Ticket ในกลุ่มนี้
+              </div>
+            )}
+
+            <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 text-xs text-gray-400">
+              แสดง {filtered.length} tickets {selectedGroup ? `ในกลุ่ม "${GROUPS.find(g => g.id === selectedGroup)?.title}"` : `จากทั้งหมด ${TICKET_LIST.length} ตัวอย่าง`}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

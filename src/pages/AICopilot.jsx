@@ -4,18 +4,24 @@ const SCENARIOS = [
   {
     id: 'fiber',
     label: 'สายขาด / Fiber',
-    prompt: 'ลงพื้นที่ตรวจสอบ พบสายไฟเบอร์ขาดที่ปากซอย 5 รถตักดินขุดทับ เปลี่ยนสายใหม่ประมาณ 30 เมตร',
+    prompt: 'ลงพื้นที่ตรวจสอบ พบสายไฟเบอร์ขาดที่ปากซอย 5 รถตักดินขุดทับ',
     suggestion: {
       causeCategory: 'NT --> 2:Last Mile --> 5:Line (Last Mile) --> LL06:Fiber Optic Cable',
-      causeGroup:    'NC --> 8:Accidents --> NoA:Car Accidents',
-      resolution:    'ลงพื้นที่ตรวจสอบพบสาย Fiber Optic ขาดเนื่องจากถูกรถตักดินขุดทับบริเวณปากซอย 5 ดำเนินการเปลี่ยนสายใหม่ระยะทาง 30 เมตร และทดสอบสัญญาณจนเป็นปกติ วงจรคืนดีเวลา [เวลา] น.',
+      events: [
+        { step: 1, actor: 'Tier 1 (NOC / Call Center)',  action: 'Ticket Opening & Dispatch',    detail: 'รับแจ้งเหตุสัญญาณ Down และดำเนินการส่งงานต่อ (Reassignment) จาก Tier 1 ไปยังทีมพื้นที่ (Tier 3) ตามมาตรฐานการจัดการเคสโครงข่ายขาด' },
+        { step: 2, actor: 'Tier 3 (Field Outsource)',    action: 'Field Investigation',           detail: 'ทีมช่างเดินทางถึงหน้างานเพื่อระบุจุดเสีย (Identify Point of Failure) และยืนยันสาเหตุสายขาดจากอุบัติเหตุรถตักดิน' },
+        { step: 3, actor: 'Tier 3 (Field Outsource)',    action: 'Material & Repair Action',      detail: 'ดำเนินการพาดสายเคเบิลใหม่ (เช่น ADSS 12C) ทดแทนส่วนที่เสียหาย และเริ่มขั้นตอนการเชื่อมต่อเส้นใยแก้ว (Splicing)' },
+        { step: 4, actor: 'Tier 3 (Field Outsource)',    action: 'Signal Validation',             detail: 'ทดสอบค่าแสงและตรวจสอบสถานะวงจรร่วมกับส่วนกลาง จนกระทั่งสัญญาณกลับมาออนไลน์ (Up) ตามเวลาที่กำหนด' },
+        { step: 5, actor: 'Tier 3 (Field Outsource)',    action: 'Evidence Submission',           detail: 'ดำเนินการแนบไฟล์หลักฐาน (Attachment Added) ประกอบด้วยรูปภาพหน้างานขณะซ่อมแซม และรายงานผลการวัดค่าแสงในรูปแบบ PDF' },
+        { step: 6, actor: 'Tier 1 (NOC / Admin)',        action: 'Final Approval & Closure',     detail: 'ตรวจสอบความครบถ้วนของหลักฐานและข้อมูลการซ่อม ก่อนดำเนินการเปลี่ยนสถานะใบงานเป็น Closed เพื่อจบงานในระบบ' },
+      ],
       materials: [
         { name: 'Fiber Optic Drop Wire', qty: '30 m', code: 'FOC-DROP-30' },
         { name: 'Fiber Splice Closure', qty: '2 ชิ้น', code: 'FSC-IP68' },
         { name: 'Fiber Connector (SC/APC)', qty: '4 ชิ้น', code: 'SC-APC-SM' },
       ],
       confidence: 96,
-      similarCases: 20736,
+      similarCases: 251,
       avgMTTR: '34.7h',
       urgency: 'high',
       tips: 'ถ่ายภาพจุดที่สายขาดและยานพาหนะที่ทำให้เกิดความเสียหาย เพื่อประกอบการเรียกค่าเสียหาย',
@@ -26,13 +32,19 @@ const SCENARIOS = [
     label: 'ไฟฟ้าดับ / Power',
     prompt: 'ลูกค้าแจ้งสัญญาณหาย ตรวจสอบพบไฟฟ้าดับในพื้นที่ ONU ไม่มีไฟ รอไฟฟ้ากลับมา',
     suggestion: {
-      causeCategory: 'CU --> 5:Power System --> SuP:Power Outage',
-      causeGroup:    'NT --> 2:Last Mile --> 7:Facility(Last Mile) --> LF08:Commercial Power Outage',
-      resolution:    'ตรวจสอบพบไฟฟ้า กฟภ. ขัดข้องในพื้นที่ ส่งผลให้อุปกรณ์ ONU ที่ลูกค้าไม่มีไฟฟ้า หลังจาก กฟภ. แก้ไขไฟฟ้ากลับมาเป็นปกติ อุปกรณ์ Boot ขึ้นและวงจรคืนดีโดยอัตโนมัติ',
+      causeCategory: 'NT --> 2:Last Mile --> 7:Facility(Last Mile) --> LF01:AC Power Line',
+      events: [
+        { step: 1, actor: 'Tier 1 (NOC / Call Center)',         action: 'Incident Detection & Opening', detail: 'รับแจ้งเหตุสัญญาณ Link Down และเปิดใบงานในระบบ' },
+        { step: 2, actor: 'Tier 1 (NOC / Call Center)',         action: 'Technical Diagnosis',          detail: 'ตรวจสอบสถานะพอร์ตและ Ping ไปยังอุปกรณ์ปลายทาง พบว่าไม่สามารถติดต่อได้ (Ping Timeout)' },
+        { step: 3, actor: 'Tier 1 (NOC / Call Center)',         action: 'Dispatch to Local Area',       detail: 'ดำเนินการโอนงาน (Reassignment) จากส่วนกลางไปยังทีมช่างในพื้นที่ (Tier 2) เพื่อเข้าตรวจสอบหน้างาน' },
+        { step: 4, actor: 'Tier 2 (Field Team / Outsource)',    action: 'Site Investigation',           detail: "ทีมช่างเดินทางถึงหน้างานและยืนยันสาเหตุ 'พบว่าไฟฟ้าดับ' ในพื้นที่ ทำให้ทางอุปกรณ์ไม่มีกระแสไฟเลี้ยง" },
+        { step: 5, actor: 'Tier 2 (Field Team / Outsource)',    action: 'Emergency Mitigation',         detail: 'ดำเนินการนำเครื่องปั่นไฟ (Generator) เข้ามาจ่ายไฟชั่วคราวให้อุปกรณ์กลับมาออนไลน์ พร้อมประสานงานการไฟฟ้า (กฟภ.) เพื่อรอการซ่อมแซมถาวร' },
+        { step: 6, actor: 'Tier 1 (NOC / Admin)',               action: 'Recovery & Resolution',        detail: 'ตรวจสอบสถานะวงจรอัพ (Link Up) และสรุปการแก้ไขว่าอุปกรณ์กลับมาใช้งานได้ปกติก่อนดำเนินการปิดใบงาน (Closed)' },
+      ],
       materials: [],
       confidence: 98,
-      similarCases: 17359,
-      avgMTTR: '14.6h',
+      similarCases: 150,
+      avgMTTR: '12h',
       urgency: 'medium',
       tips: 'บันทึกหมายเลขโทรศัพท์ กฟภ. ในพื้นที่ และเวลาที่ไฟฟ้าคืนมาเพื่อใช้อ้างอิง Downtime',
     },
@@ -40,22 +52,48 @@ const SCENARIOS = [
   {
     id: 'router',
     label: 'Router แฮงค์',
-    prompt: 'Ping ไม่ได้ ลงพื้นที่พบ Router แฮงค์ LED กะพริบผิดปกติ ทำการ Reboot แล้วกลับมาปกติ',
+    prompt: 'ลูกค้าแจ้งสัญญาณหาย หรืออินเทอร์เน็ตใช้งานไม่ได้ ตรวจสอบเบื้องต้นพบอุปกรณ์ (ONU/Router) ค้างหรือแฮงค์',
     suggestion: {
-      causeCategory: 'NT --> 2:Last Mile --> 6:Equipment (Last Mile) --> LE13:Router',
-      causeGroup:    'NT --> 2:Last Mile --> 6:Equipment (Last Mile)',
-      resolution:    'ลงพื้นที่ตรวจสอบพบ Router ที่ลูกค้าค้าง (Hang) สังเกตจาก LED Status กะพริบผิดปกติ ดำเนินการ Power Cycle (Reboot) อุปกรณ์ หลังจาก Boot ขึ้นสมบูรณ์ ทดสอบ Ping ปลายทางได้ปกติ วงจรคืนดี',
+      causeCategory: 'NT --> 2:Last Mile --> 6:CPE(Last Mile) --> LC01:Modem/Router',
+      events: [
+        { step: 1, actor: 'Tier 1 (NOC / Call Center)',            action: 'Ticket Opening & Verification', detail: 'รับเรื่องแจ้งอินเทอร์เน็ตใช้งานไม่ได้ ตรวจสอบสถานะผ่านระบบ CSS/Authen พบอุปกรณ์ Offline' },
+        { step: 2, actor: 'Tier 1 (NOC / Call Center)',            action: 'Basic Troubleshooting',         detail: 'ประสานงานลูกค้าให้ทำ Power Cycle (ปิด-เปิดอุปกรณ์ใหม่) หากยังไม่สามารถออนไลน์ได้ ให้ดำเนินการโอนงานต่อ' },
+        { step: 3, actor: 'Tier 1 (NOC / Call Center)',            action: 'Technical Escalation',          detail: 'ดำเนินการ Reassignment ส่งต่อใบงานไปยังส่วนปฏิบัติการโครงข่ายในพื้นที่ (Tier 2) เนื่องจากอุปกรณ์ยังไม่ได้รับ IP' },
+        { step: 4, actor: 'Tier 2 (Local Support / Area Engineer)', action: 'Field Investigation',           detail: 'เข้าตรวจสอบอุปกรณ์ ณ สถานที่ติดตั้ง พบว่าเครื่องค้าง (Hang) จากปัจจัยภายนอก เช่น ความร้อนสะสม หรือระบบไฟไม่เสถียร' },
+        { step: 5, actor: 'Tier 2 (Local Support / Area Engineer)', action: 'System Reset & Optimization',  detail: 'ทำการ Reset อุปกรณ์และให้พักการทำงานเพื่อระบายความร้อน พร้อมให้คำแนะนำลูกค้าในการจัดวางตำแหน่งอุปกรณ์ใหม่' },
+        { step: 6, actor: 'Tier 1 (NOC / Admin)',                  action: 'Final Monitoring & Resolution', detail: "มอนิเตอร์สถานะการ Login ของอุปกรณ์จนมั่นใจว่าเสถียร ก่อนบันทึกสาเหตุ 'อุปกรณ์แฮงค์' และดำเนินการปิดงาน" },
+      ],
       materials: [
         { name: 'Router Replacement (สำรอง)', qty: '1 เครื่อง', code: 'RTR-BACKUP' },
       ],
-      confidence: 91,
-      similarCases: 3325,
-      avgMTTR: '35.9h',
+      confidence: 94,
+      similarCases: 2415,
+      avgMTTR: '12.5h',
       urgency: 'medium',
       tips: 'ตรวจสอบ Firmware Version และบันทึก Serial Number หากอุปกรณ์ค้างบ่อยกว่า 3 ครั้ง/เดือน ควรเสนอเปลี่ยนอุปกรณ์',
     },
   },
 ]
+
+const EVENT_ACTION_CONFIG = {
+  'Ticket Opening & Dispatch':    { color: '#2E3192', bg: '#EEF0FF' },
+  'Field Investigation':          { color: '#D69E2E', bg: '#FFFBEB' },
+  'Material & Repair Action':     { color: '#2B6CB0', bg: '#EBF8FF' },
+  'Signal Validation':            { color: '#0D9488', bg: '#F0FDFA' },
+  'Evidence Submission':          { color: '#6B7280', bg: '#F9FAFB' },
+  'Final Approval & Closure':     { color: '#1A1A2E', bg: '#F3F4F6' },
+  'Incident Detection & Opening':  { color: '#2E3192', bg: '#EEF0FF' },
+  'Technical Diagnosis':           { color: '#805AD5', bg: '#FAF5FF' },
+  'Dispatch to Local Area':        { color: '#D69E2E', bg: '#FFFBEB' },
+  'Site Investigation':            { color: '#D69E2E', bg: '#FFFBEB' },
+  'Emergency Mitigation':          { color: '#E53E3E', bg: '#FFF5F5' },
+  'Recovery & Resolution':         { color: '#38A169', bg: '#F0FFF4' },
+  'Ticket Opening & Verification': { color: '#2E3192', bg: '#EEF0FF' },
+  'Basic Troubleshooting':         { color: '#805AD5', bg: '#FAF5FF' },
+  'Technical Escalation':          { color: '#D69E2E', bg: '#FFFBEB' },
+  'System Reset & Optimization':   { color: '#2B6CB0', bg: '#EBF8FF' },
+  'Final Monitoring & Resolution': { color: '#38A169', bg: '#F0FFF4' },
+}
 
 const URGENCY_CONFIG = {
   high:   { label: 'สูง', color: '#E53E3E', bg: '#FFF5F5' },
@@ -262,46 +300,90 @@ export default function AICopilot() {
               {/* Cause Category */}
               <div className="rounded-xl border border-blue-100 bg-blue-50 p-4">
                 <p className="text-xs text-blue-600 font-semibold uppercase tracking-wide mb-2">
-                  AI แนะนำ: Cause Category
+                  Cause Category
                 </p>
-                <div className="space-y-1.5">
-                  <div>
-                    <p className="text-xs text-gray-500 mb-0.5">Primary Cause</p>
-                    <p className="text-xs font-mono font-semibold text-gray-800 bg-white rounded-lg px-3 py-2 border border-blue-100">
-                      <TypingText text={s.causeCategory} speed={14} />
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 mb-0.5">Cause Group</p>
-                    <p className="text-xs font-mono font-semibold text-gray-800 bg-white rounded-lg px-3 py-2 border border-blue-100">
-                      <TypingText text={s.causeGroup} speed={16} />
-                    </p>
-                  </div>
-                </div>
+                <p className="text-xs font-mono font-semibold text-gray-800 bg-white rounded-lg px-3 py-2 border border-blue-100">
+                  <TypingText text={s.causeCategory} speed={14} />
+                </p>
               </div>
 
-              {/* Standard Resolution */}
-              <div className="rounded-xl border border-green-100 bg-green-50 p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <p className="text-xs text-green-600 font-semibold uppercase tracking-wide">
-                    คำปิดเคสมาตรฐาน (Standard Resolution)
-                  </p>
-                  <button onClick={copyResolution}
-                          className="text-xs px-2 py-1 rounded-lg font-medium transition-all"
-                          style={{ background: copySuccess ? '#38A169' : '#FFD100', color: copySuccess ? 'white' : '#2E3192' }}>
-                    {copySuccess ? '✓ Copied' : 'Copy'}
-                  </button>
+              {/* Events or Standard Resolution */}
+              {s.events ? (
+                <div>
+                  <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3 px-1">
+                    Events — {s.events.length} steps
+                  </h2>
+                  <div className="space-y-0">
+                    {s.events.map((ev, idx) => {
+                      const isFirst = idx === 0
+                      const isLast  = idx === s.events.length - 1
+                      const cfg = EVENT_ACTION_CONFIG[ev.action] || { color: '#6B7280', bg: '#F9FAFB' }
+                      return (
+                        <div key={idx} className="flex gap-4">
+                          {/* Connector */}
+                          <div className="flex flex-col items-center w-8 flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full flex items-center justify-center z-10 flex-shrink-0 shadow-sm ring-2 ring-white"
+                                 style={{ background: isFirst ? '#2E3192' : isLast ? '#1A1A2E' : cfg.color }}>
+                              {isFirst ? (
+                                <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M10 2a8 8 0 100 16A8 8 0 0010 2z"/>
+                                </svg>
+                              ) : isLast ? (
+                                <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                                </svg>
+                              ) : (
+                                <span className="text-white text-xs font-bold">{ev.step}</span>
+                              )}
+                            </div>
+                            {!isLast && <div className="w-0.5 flex-1 bg-gray-200 my-0.5" style={{ minHeight: '20px' }} />}
+                          </div>
+                          {/* Card */}
+                          <div className={`flex-1 mb-2 rounded-xl border p-3 ${isFirst || isLast ? 'shadow-sm' : ''}`}
+                               style={{
+                                 background: isFirst ? '#EEF0FF' : isLast ? '#F3F4F6' : 'white',
+                                 borderColor: isFirst ? '#c7cbf4' : isLast ? '#d1d5db' : '#f3f4f6',
+                               }}>
+                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                              <div className="flex items-center gap-2">
+                                <span className="text-xs px-2 py-0.5 rounded-full font-semibold"
+                                      style={{ background: cfg.bg, color: cfg.color }}>
+                                  {ev.action}
+                                </span>
+                                <span className="text-xs text-gray-400 truncate max-w-xs">{ev.actor}</span>
+                              </div>
+                              <span className="text-xs font-mono text-gray-300 flex-shrink-0">step {ev.step}</span>
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1.5 leading-snug">{ev.detail}</p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
-                <p className="text-xs text-green-800 leading-relaxed bg-white rounded-lg p-3 border border-green-100">
-                  <TypingText text={s.resolution} speed={8} />
-                </p>
-              </div>
+              ) : (
+                <div className="rounded-xl border border-green-100 bg-green-50 p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs text-green-600 font-semibold uppercase tracking-wide">
+                      คำปิดเคสมาตรฐาน (Standard Resolution)
+                    </p>
+                    <button onClick={copyResolution}
+                            className="text-xs px-2 py-1 rounded-lg font-medium transition-all"
+                            style={{ background: copySuccess ? '#38A169' : '#FFD100', color: copySuccess ? 'white' : '#2E3192' }}>
+                      {copySuccess ? '✓ Copied' : 'Copy'}
+                    </button>
+                  </div>
+                  <p className="text-xs text-green-800 leading-relaxed bg-white rounded-lg p-3 border border-green-100">
+                    <TypingText text={s.resolution} speed={8} />
+                  </p>
+                </div>
+              )}
 
               {/* Materials */}
               {s.materials.length > 0 && (
                 <div className="rounded-xl border border-yellow-100 p-4" style={{ background: '#FFFBEB' }}>
                   <p className="text-xs font-semibold uppercase tracking-wide mb-3" style={{ color: '#B7791F' }}>
-                    วัสดุที่ต้องเบิก / Materials Required
+                    Materials Required
                   </p>
                   <div className="space-y-2">
                     {s.materials.map(m => (
