@@ -1,9 +1,10 @@
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts'
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 import data from '../mockup_data.json'
 
-const { summary, cause_pie, mttr_by_cause, complexity_chart } = data
+const { summary, cause_pie, mttr_by_cause, complexity_chart, group_chart } = data
 
-const PIE_COLORS = ['#2E3192', '#FFD100', '#E53E3E', '#38A169', '#D69E2E', '#805AD5']
+const PIE_COLORS = ['#2E3192', '#D69E2E', '#9CA3AF', '#E53E3E', '#38A169', '#805AD5', '#0EA5E9']
+const GROUP_COLORS = ['#2E3192', '#E53E3E', '#D69E2E', '#805AD5']
 
 const KPI_CARDS = [
   {
@@ -11,42 +12,24 @@ const KPI_CARDS = [
     value: '186,184',
     sub: 'Log entries across all tickets',
     icon: '📊',
-    accent: true,
   },
   {
-    label: 'Unique Tickets',
+    label: 'Total Tickets',
     value: '6,665',
     sub: 'Incidents in Oct 2025',
     icon: '🎫',
-    accent: false,
   },
   {
-    label: 'Avg Updates / Ticket',
+    label: 'Avg Event / Ticket',
     value: '28',
     sub: 'Events per incident (median 25)',
     icon: '🔄',
-    accent: false,
   },
   {
     label: 'Avg MTTR',
     value: `${summary.mttr_mean_hr}h`,
     sub: `Median ${summary.mttr_median_hr}h · Fiber avg 34.7h`,
     icon: '⏱️',
-    accent: false,
-  },
-  {
-    label: 'Avg Reassignments',
-    value: summary.avg_reassign,
-    sub: 'Hand-offs per ticket',
-    icon: '🔀',
-    accent: false,
-  },
-  {
-    label: 'Quality Flags',
-    value: `${summary.flagged_tickets.toLocaleString()}`,
-    sub: `${((summary.flagged_tickets / summary.total_tickets) * 100).toFixed(0)}% of tickets flagged by AI`,
-    icon: '🚩',
-    accent: false,
   },
 ]
 
@@ -91,23 +74,19 @@ export default function Dashboard() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {KPI_CARDS.map((k) => (
           <div key={k.label}
-               className={`rounded-2xl p-5 shadow-sm flex items-start gap-4 ${
-                 k.accent ? 'text-white' : 'bg-white text-gray-800'
-               }`}
-               style={k.accent ? { background: '#2E3192' } : {}}>
+               className="rounded-2xl p-5 shadow-sm flex items-start gap-4 bg-white text-gray-800">
             <span className="text-2xl">{k.icon}</span>
             <div className="min-w-0">
-              <p className={`text-xs font-medium uppercase tracking-wide ${k.accent ? 'text-white/60' : 'text-gray-400'}`}>
+              <p className="text-xs font-medium uppercase tracking-wide text-gray-400">
                 {k.label}
               </p>
-              <p className={`text-2xl font-bold mt-0.5 ${k.accent ? 'text-nt-yellow' : 'text-gray-900'}`}
-                 style={k.accent ? { color: '#FFD100' } : {}}>
+              <p className="text-2xl font-bold mt-0.5 text-gray-900">
                 {k.value}
               </p>
-              <p className={`text-xs mt-1 leading-tight ${k.accent ? 'text-white/50' : 'text-gray-400'}`}>
+              <p className="text-xs mt-1 leading-tight text-gray-400">
                 {k.sub}
               </p>
             </div>
@@ -116,7 +95,23 @@ export default function Dashboard() {
       </div>
 
       {/* Charts row */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 gap-4">
+        {/* Group Cards */}
+        <div className="flex flex-col gap-3 h-full">
+          {group_chart.map((d, i) => (
+            <div key={d.name} className="bg-white rounded-xl shadow-sm px-4 py-3 flex items-center gap-3 flex-1">
+              <span className="px-2 py-0.5 rounded text-white text-xs font-bold shrink-0"
+                    style={{ background: GROUP_COLORS[i] }}>
+                {d.name}
+              </span>
+              <span className="text-xs text-gray-500 flex-1 leading-tight">{d.desc}</span>
+              <div className="text-right shrink-0">
+                <p className="text-sm font-bold text-gray-800">{d.pct}%</p>
+                <p className="text-[11px] text-gray-400">{d.value.toLocaleString()}</p>
+              </div>
+            </div>
+          ))}
+        </div>
         {/* Cause Pie */}
         <div className="bg-white rounded-2xl shadow-sm p-5">
           <h2 className="font-semibold text-gray-800 mb-1">Root Cause Distribution</h2>
@@ -154,7 +149,7 @@ export default function Dashboard() {
         {/* MTTR by Cause */}
         <div className="bg-white rounded-2xl shadow-sm p-5">
           <h2 className="font-semibold text-gray-800 mb-1">MTTR by Root Cause</h2>
-          <p className="text-xs text-gray-400 mb-4">ชั่วโมงเฉลี่ยจนปิด Ticket · Fiber/Equipment ใช้เวลานานสุด</p>
+          <p className="text-xs text-gray-400 mb-4">ชั่วโมงเฉลี่ยจนปิด Ticket · External/Accidents ใช้เวลานานสุด 49.7h</p>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={mttr_by_cause} layout="vertical" margin={{ left: 8, right: 24 }}>
               <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f0f0f0" />
@@ -197,39 +192,39 @@ export default function Dashboard() {
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-          <p className="text-xs text-gray-400 mt-2 text-center">73.4% ของ Ticket มี 21–50 events</p>
+          <p className="text-xs text-gray-400 mt-2 text-center">75.9% ของ Ticket มี 16–35 events (Standard Operation)</p>
         </div>
 
         {/* Key Insights */}
-        <div className="rounded-2xl p-5 space-y-3" style={{ background: '#2E3192' }}>
-          <h2 className="font-semibold text-white mb-2">Key Insights จากข้อมูล</h2>
+        <div className="bg-white rounded-2xl p-5 space-y-3 shadow-sm">
+          <h2 className="font-semibold text-gray-800 mb-2">Key Insights <span className="text-xs font-normal text-gray-400">(วิเคราะห์ด้วย AI)</span></h2>
           {[
             {
-              icon: '⚠️',
-              title: 'Fiber Optic ใช้เวลา 34.7h เฉลี่ย',
-              desc: 'นานกว่า Power Outage ถึง 2.4 เท่า ทั้งที่เป็นปัญหาซ้ำๆ',
-            },
-            {
-              icon: '📋',
-              title: '103 Template Resolutions ที่ซ้ำกัน',
-              desc: 'Operator copy-paste ข้อความปิดงาน — AI ตรวจจับได้ทันที',
-            },
-            {
-              icon: '🔄',
-              title: 'Reassignment เฉลี่ย 2.48 ครั้ง/Ticket',
-              desc: 'งานวนเวียน ไม่ได้ถูก assign ให้ผู้เชี่ยวชาญตั้งแต่แรก',
-            },
-            {
               icon: '🚩',
-              title: '2,342 Tickets ถูก AI Flag',
-              desc: 'มีข้อมูลไม่สอดคล้อง หรือ Resolution ไม่สมเหตุสมผล',
+              title: 'วิกฤต SLA จากปัจจัยภายนอก',
+              desc: 'กลุ่มอุบัติเหตุและสัตว์กัดสายมี MTTR สูงถึง 49.7h นานกว่าปัญหาไฟฟ้าถึง 10 เท่า จำเป็นต้องมีมาตรการป้องกันเชิงรุก',
+            },
+            {
+              icon: '🐭',
+              title: 'สัตว์กัดสายคือแผลที่ซ่อนอยู่',
+              desc: '10.2% ของใบงาน (681 เคส) เกิดจากสัตว์กัดสาย เดิมถูกจัดรวมใน "อื่นๆ" ทำให้มองไม่เห็นต้นทุนแฝง',
+            },
+            {
+              icon: '🗑️',
+              title: 'ปัญหาคุณภาพการบันทึกข้อมูล',
+              desc: '61.6% ของ Log เป็นข้อมูลที่ไม่สามารถนำไปวิเคราะห์ต่อได้ แม้ลงข้อมูลเฉลี่ย 28 ครั้ง/ใบงาน',
+            },
+            {
+              icon: '⚡',
+              title: 'Extreme Outliers 22 เคส',
+              desc: 'พบใบงานที่มีการโต้ตอบเกิน 100 ครั้ง (สูงสุด 144 ครั้ง) กินทรัพยากรสูงสุด จำเป็นต้องใช้ AI ช่วยสรุป',
             },
           ].map(({ icon, title, desc }) => (
-            <div key={title} className="flex gap-3 bg-white/10 rounded-xl p-3">
+            <div key={title} className="flex gap-3 bg-gray-50 rounded-xl p-3">
               <span className="text-xl flex-shrink-0">{icon}</span>
               <div>
-                <p className="text-white text-sm font-semibold leading-tight">{title}</p>
-                <p className="text-white/60 text-xs mt-0.5 leading-tight">{desc}</p>
+                <p className="text-gray-800 text-sm font-semibold leading-tight">{title}</p>
+                <p className="text-gray-500 text-xs mt-0.5 leading-tight">{desc}</p>
               </div>
             </div>
           ))}

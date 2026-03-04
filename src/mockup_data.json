@@ -11,86 +11,38 @@
     "consistency_pct": 5.0,
     "data_period": "Oct 1–31, 2025"
   },
+  "group_chart": [
+    { "name": "NT",      "desc": "Network / โครงข่าย NT",     "value": 2950, "pct": 44.4 },
+    { "name": "NC",      "desc": "External / เหตุภายนอก",     "value": 2272, "pct": 34.2 },
+    { "name": "CU",      "desc": "Customer / ลูกค้า",          "value": 1290, "pct": 19.4 },
+    { "name": "Partner", "desc": "Partner / คู่ค้า",           "value": 129,  "pct": 1.9  }
+  ],
   "cause_pie": [
-    {
-      "name": "Other",
-      "value": 2813,
-      "pct": 42.8
-    },
-    {
-      "name": "Fiber Optic",
-      "value": 1665,
-      "pct": 25.3
-    },
-    {
-      "name": "Power Outage",
-      "value": 1440,
-      "pct": 21.9
-    },
-    {
-      "name": "Equipment/Router",
-      "value": 547,
-      "pct": 8.3
-    },
-    {
-      "name": "Last Mile",
-      "value": 113,
-      "pct": 1.7
-    },
-    {
-      "name": "Configuration",
-      "value": 2,
-      "pct": 0.0
-    }
+    { "name": "Fiber Optic / Line", "value": 1753, "pct": 26.3 },
+    { "name": "Power Issues", "value": 1500, "pct": 22.5 },
+    { "name": "Other / Unknown", "value": 1446, "pct": 21.7 },
+    { "name": "External / Accidents", "value": 1118, "pct": 16.8 },
+    { "name": "Equipment / Node", "value": 522, "pct": 7.8 },
+    { "name": "Partner / Maintenance", "value": 175, "pct": 2.6 },
+    { "name": "Configuration", "value": 151, "pct": 2.3 }
   ],
   "mttr_by_cause": [
-    {
-      "cause": "Other",
-      "avg_hr": 36.91,
-      "count": 2813
-    },
-    {
-      "cause": "Equipment/Router",
-      "avg_hr": 35.88,
-      "count": 547
-    },
-    {
-      "cause": "Fiber Optic",
-      "avg_hr": 34.7,
-      "count": 1665
-    },
-    {
-      "cause": "Last Mile",
-      "avg_hr": 17.37,
-      "count": 113
-    },
-    {
-      "cause": "Power Outage",
-      "avg_hr": 14.59,
-      "count": 1440
-    }
+    { "cause": "External / Accidents", "avg_hr": 49.7, "count": 1118 },
+    { "cause": "Other / Unknown",      "avg_hr": 16.5, "count": 1402 },
+    { "cause": "Fiber Optic / Line",   "avg_hr": 13.8, "count": 1753 },
+    { "cause": "Equipment / Node",     "avg_hr": 10.1, "count": 566  },
+    { "cause": "Partner / Maint.",     "avg_hr": 8.0,  "count": 175  },
+    { "cause": "Configuration",        "avg_hr": 6.8,  "count": 151  },
+    { "cause": "Power Issues",         "avg_hr": 5.3,  "count": 1500 }
   ],
   "complexity_chart": [
-    {
-      "range": "6-10",
-      "count": 10
-    },
-    {
-      "range": "11-20",
-      "count": 1470
-    },
-    {
-      "range": "21-30",
-      "count": 3312
-    },
-    {
-      "range": "31-50",
-      "count": 1577
-    },
-    {
-      "range": "51+",
-      "count": 296
-    }
+    { "range": "6-15",   "count": 273,  "description": "Quick Resolution" },
+    { "range": "16-25",  "count": 2841, "description": "Standard Operation" },
+    { "range": "26-35",  "count": 2215, "description": "Standard Operation" },
+    { "range": "36-50",  "count": 894,  "description": "Moderate Interaction" },
+    { "range": "51-75",  "count": 352,  "description": "High Interaction" },
+    { "range": "76-100", "count": 68,   "description": "Critical Complexity" },
+    { "range": "100+",   "count": 22,   "description": "Extreme Outliers" }
   ],
 "timeline_tickets": [
   {

@@ -1,55 +1,32 @@
 {
-  "audit_metadata": {
-    "total_tickets": 6665
-  },
-  "groups": [
-    {
-      "id": "normal",
-      "title": "Normal / Standard Cases",
-      "count": 3120,
-      "description": "เคสที่ดำเนินการปิดงานได้ตาม SLA และมีขั้นตอนการทำงานที่ชัดเจน",
-      "color": "green",
-      "severity": "None"
+  "ai_analysis_engine": {
+    "section_title": "AI Logic & Strategic Insights",
+    "root_cause_discovery": {
+      "summary": "AI พบว่า 61% ของเคสกลุ่ม 'Other' คือภัยจากสัตว์กัดสาย (Animal Attacks) ซึ่งระบบเดิมระบุไม่ได้",
+      "technical_finding": "จากการ Audit ข้อความใน Log 1.8 แสนบรรทัด พบ Keyword วิกฤต: 'กระรอกกัด', 'มดทำรัง', 'รอยแทะ' และ 'ลูกหลงปืนยิง' ซ่อนอยู่ในกลุ่ม NoA",
+      "data_quality_alert": "พบ Junk Log (61.6%) ในกลุ่มนี้สูงที่สุด ทำให้การหาสาเหตุด้วยคนทำได้ยากและล่าช้า"
     },
-    {
-      "id": "data_quality",
-      "title": "Data Quality Issues",
-      "count": 1117,
-      "description": "เคสที่ระบุสาเหตุเป็น 'อื่นๆ' ทั้งที่มี Keyword ระบุสาเหตุชัดเจนใน Note",
-      "color": "red",
-      "severity": "High"
+    "business_impact": {
+      "financial_leak": "สูญเสียรายได้และค่าซ่อมรวม 4.25 ล้านบาท/รอบการวิเคราะห์",
+      "sla_performance": "กลุ่ม NoA คือตัวการหลักที่ดึง MTTR เฉลี่ยทั้งองค์กรให้ช้าลง 2.6 เท่า (แตะ 49.7 ชม.)",
+      "churn_risk": "พื้นที่ Hotspot (เช่น พัทลุง, กทม. เหนือ) มีความเสี่ยงลูกค้าเลิกใช้บริการสูงเนื่องจากเน็ตดับซ้ำซาก"
     },
-    {
-      "id": "silent_closure",
-      "title": "Suspicious Silent Closure",
-      "count": 950,
-      "description": "เคสที่ปิดงานเร็วผิดปกติและขาดหลักฐานยืนยันที่จำเป็น (เช่น รูปภาพ/ผลเทส)",
-      "color": "yellow",
-      "severity": "Medium"
-    },
-    {
-      "id": "recurring",
-      "title": "Recurring Faults",
-      "count": 820,
-      "description": "จุดเดิมแจ้งเสียซ้ำซ้อนเกิน 1 ครั้งในรอบสัปดาห์ (เสี่ยงอุปกรณ์เสื่อมสภาพ)",
-      "color": "purple",
-      "severity": "High"
-    },
-    {
-      "id": "problematic",
-      "title": "High Risk Interaction",
-      "count": 418,
-      "description": "ใบงานที่มีการโต้ตอบสูงหรือลัดคิวงานบ่อยครั้ง (เสี่ยงต่อการ Complaint)",
-      "color": "orange",
-      "severity": "Medium"
-    },
-    {
-      "id": "tech_noise",
-      "title": "Technical Noise",
-      "count": 240,
-      "description": "ปัญหาปัจจัยภายนอกที่ไม่เกี่ยวกับโครงข่ายหลัก (เช่น อุปกรณ์ส่วนตัวลูกค้า)",
-      "color": "slate",
-      "severity": "Low"
-    }
-  ]
+    "strategic_recommendations": [
+      {
+        "priority": "High",
+        "action": "Targeted Armoring Strategy",
+        "details": "ลงทุนเปลี่ยนสายหุ้มเกราะ (Armored Cable) ใน 1,094 จุดเสี่ยงที่ AI ชี้เป้า เพื่อตัดวงจรการซ่อมซ้ำซาก"
+      },
+      {
+        "priority": "Medium",
+        "action": "Smart Dispatch Routing",
+        "details": "ปรับ Workflow ให้ข้าม Tier 2 (Dispatcher) และส่งงานตรงถึงทีมช่างสายทันทีเมื่อ AI ตรวจพบ Keyword สัตว์กัดสาย เพื่อลดเวลาลง 4.5 ชม."
+      },
+      {
+        "priority": "Low",
+        "action": "Field Log Quality Up-skill",
+        "details": "บังคับใช้ Mobile AI ตรวจจับรูปภาพหน้างานแทนการพิมพ์ Log เพื่อลดปริมาณขยะข้อมูล 61.6%"
+      }
+    ]
+  }
 }
